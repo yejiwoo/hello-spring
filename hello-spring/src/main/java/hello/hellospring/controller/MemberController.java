@@ -1,5 +1,6 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,5 +31,12 @@ public class MemberController {
     @PostMapping("/members/new")
     public String create(MemberForm form) {
 
+        Member member =new Member();
+        member.setName(form.getName());
+
+        memberService.join(member);
+
+        return "redirect:/";
     }
+
 }
