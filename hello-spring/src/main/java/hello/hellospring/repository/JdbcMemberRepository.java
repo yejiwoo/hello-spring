@@ -26,11 +26,11 @@ public class JdbcMemberRepository implements MemberRepository{
         ResultSet rs=null;
 
         try{
-            conn= getConnection();
-            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, member.getName());
+            conn= getConnection();  //JDBC와 연결
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);  //prepareStatement로 쿼리 실행
+            pstmt.setString(1, member.getName());  // 물음표에 member.name을 파라미터로 전달
 
-            pstmt.executeUpdate();
+            pstmt.executeUpdate();  // JDBC로 쿼리 실행
             rs=pstmt.getGeneratedKeys();
 
             if (rs.next()) {
@@ -59,11 +59,11 @@ public class JdbcMemberRepository implements MemberRepository{
         ResultSet rs=null;
 
         try {
-            conn = getConnection();
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setLong(1, id);
+            conn = getConnection();  //JDBC와 연결
+            pstmt = conn.prepareStatement(sql);  //prepareStatement로 쿼리 실행
+            pstmt.setLong(1, id);  // 물음표에 id를 파라미터로 전달
 
-            rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();  // JDBC로 쿼리 실행
 
             if (rs.next()) {
                 Member member = new Member();
